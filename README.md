@@ -1,59 +1,270 @@
-<header>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad Final </title> <title> equipo 2</title>
+    <style>
+        body {
+            font-family: Orbitron;
+            margin: 0;
+            padding: 0;
+            background-color: #5a4444;
+        }
+        header {
+            background-color: #273241; /* Color cobalto */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .container {
+            padding: 20px;
+        }
+        select, input, button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #273241; /* Color cobalto */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #273241; /* Un tono más oscuro de cobalto */
+        }
+        footer {
+            background-color: #273241;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Actividad Final 3ra Evaluación</h1>
+    </header>
+    <div class="container">
+        <label for="algoritmo">Selecciona un algoritmo:</label>
+        <select id="algoritmo">
+            <option value="1">Suma de 2 números</option>
+            <option value="2">Identificar par o impar</option>
+            <option value="3">Mayor de 3 números</option>
+            <option value="4">Conversión Celsius a Fahrenheit</option>
+            <option value="5">Contar letras de una cadena</option>
+            <option value="6">Identificar si un número es primo</option>
+            <option value="7">Convertir minutos a segundos</option>
+            <option value="8">Identificar si un número es negativo, positivo o cero</option>
+            <option value="9">Contar vocales de una cadena</option>
+            <option value="10">Número aleatorio entre 2 números</option>
+            <option value="11">Generar lista de números impares</option>
+            <option value="12">Contar palabras de una cadena</option>
+        </select>
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+        <div id="inputs">
+            <!-- Los inputs para cada algoritmo se añadirán aquí dinámicamente -->
+        </div>
 
-# GitHub Pages
+        <button onclick="ejecutarAlgoritmo()">Ejecutar</button>
+        <p id="resultado"></p>
+    </div>
+    <footer>
+        <p>&copy; Integrantes del equipo:</p>
+        <ul>
+            <li>Cruz Cordoba Angel Yahir</li>
+            <li>Duran Dominguez Heberto</li>
+            <li>Esquivel Cordoba Ricardo Austria</li>
+            <li>Fuentes Avendaño Jesus Alberto</li>
+            <li>Garcia Hernandez Erick Alfonso</li>
+        </ul>
+    </footer>
+    
+   
+    <script>
+        function generarInputs() {
+            const algoritmo = document.getElementById("algoritmo").value;
+            let inputsHTML = "";
+            switch (algoritmo) {
+                case "1":
+                    inputsHTML = `
+                        <label for="num1">Número 1:</label>
+                        <input type="number" id="num1">
+                        <label for="num2">Número 2:</label>
+                        <input type="number" id="num2">
+                    `;
+                    break;
+                case "2":
+                    inputsHTML = `
+                        <label for="numParImpar">Número:</label>
+                        <input type="number" id="numParImpar">
+                    `;
+                    break;
+                case "3":
+                    inputsHTML = `
+                        <label for="num3">Número 1:</label>
+                        <input type="number" id="num3">
+                        <label for="num4">Número 2:</label>
+                        <input type="number" id="num4">
+                        <label for="num5">Número 3:</label>
+                        <input type="number" id="num5">
+                    `;
+                    break;
+                case "4":
+                    inputsHTML = `
+                        <label for="celsius">Grados Celsius:</label>
+                        <input type="number" id="celsius">
+                    `;
+                    break;
+                case "5":
+                    inputsHTML = `
+                        <label for="cadena">Cadena:</label>
+                        <input type="text" id="cadena">
+                    `;
+                    break;
+                case "6":
+                    inputsHTML = `
+                        <label for="numPrimo">Número:</label>
+                        <input type="number" id="numPrimo">
+                    `;
+                    break;
+                case "7":
+                    inputsHTML = `
+                        <label for="minutos">Minutos:</label>
+                        <input type="number" id="minutos">
+                    `;
+                    break;
+                case "8":
+                    inputsHTML = `
+                        <label for="numSigno">Número:</label>
+                        <input type="number" id="numSigno">
+                    `;
+                    break;
+                case "9":
+                    inputsHTML = `
+                        <label for="cadenaVocales">Cadena:</label>
+                        <input type="text" id="cadenaVocales">
+                    `;
+                    break;
+                case "10":
+                    inputsHTML = `
+                        <label for="min">Mínimo:</label>
+                        <input type="number" id="min">
+                        <label for="max">Máximo:</label>
+                        <input type="number" id="max">
+                    `;
+                    break;
+                case "11":
+                    inputsHTML = `
+                        <label for="limiteImpares">Límite:</label>
+                        <input type="number" id="limiteImpares">
+                    `;
+                    break;
+                case "12":
+                    inputsHTML = `
+                        <label for="cadenaPalabras">Cadena:</label>
+                        <input type="text" id="cadenaPalabras">
+                    `;
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById("inputs").innerHTML = inputsHTML;
+        }
 
-_Create a site or blog from your GitHub repositories with GitHub Pages._
+        function ejecutarAlgoritmo() {
+            const algoritmo = document.getElementById("algoritmo").value;
+            let resultado = "";
 
-</header>
+            switch (algoritmo) {
+                case "1":
+                    const num1 = parseFloat(document.getElementById("num1").value);
+                    const num2 = parseFloat(document.getElementById("num2").value);
+                    resultado = `La suma es: ${num1 + num2}`;
+                    break;
+                case "2":
+                    const numParImpar = parseInt(document.getElementById("numParImpar").value);
+                    resultado = numParImpar % 2 === 0 ? "Es par" : "Es impar";
+                    break;
+                case "3":
+                    const num3 = parseInt(document.getElementById("num3").value);
+                    const num4 = parseInt(document.getElementById("num4").value);
+                    const num5 = parseInt(document.getElementById("num5").value);
+                    resultado = Math.max(num3, num4, num5);
+                    break;
+                case "4":
+                    const celsius = parseFloat(document.getElementById("celsius").value);
+                    resultado = `${celsius}°C es igual a ${(celsius * 9/5) + 32}°F`;
+                    break;
+                case "5":
+                    const cadena = document.getElementById("cadena").value;
+                    resultado = `La cadena tiene ${cadena.length} letras.`;
+                    break;
+                case "6":
+                    const numPrimo = parseInt(document.getElementById("numPrimo").value);
+                    resultado = esPrimo(numPrimo) ? "Es primo" : "No es primo";
+                    break;
+                case "7":
+                    const minutos = parseInt(document.getElementById("minutos").value);
+                    resultado = `${minutos} minutos son ${minutos * 60} segundos.`;
+                    break;
+                case "8":
+                    const numSigno = parseInt(document.getElementById("numSigno").value);
+                    resultado = numSigno > 0 ? "Es positivo" : (numSigno < 0 ? "Es negativo" : "Es cero");
+                    break;
+                case "9":
+                    const cadenaVocales = document.getElementById("cadenaVocales").value;
+                    resultado = `La cadena tiene ${contarVocales(cadenaVocales)} vocales.`;
+                    break;
+                case "10":
+                    const min = parseInt(document.getElementById("min").value);
+                    const max = parseInt(document.getElementById("max").value);
+                    resultado = `Número aleatorio: ${Math.floor(Math.random() * (max - min + 1)) + min}`;
+                    break;
+                case "11":
+                    const limiteImpares = parseInt(document.getElementById("limiteImpares").value);
+                    resultado = `Números impares: ${generarImpares(limiteImpares)}`;
+                    break;
+                case "12":
+                    const cadenaPalabras = document.getElementById("cadenaPalabras").value;
+                    resultado = `La cadena tiene ${cadenaPalabras.split(/\s+/).length} palabras.`;
+                    break;
+                default:
+                    break;
+            }
 
-<!--
-  <<< Author notes: Step 2 >>>
-  Start this step by acknowledging the previous step.
-  Define terms and link to docs.github.com.
-  Historic note: previous version checked for empty pull request, changed to the correct theme `minima`.
--->
+            document.getElementById("resultado").innerText = resultado;
+        }
 
-## Step 2: Configure your site
+        function esPrimo(num) {
+            if (num <= 1) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
 
-_You turned on GitHub Pages! :tada:_
+        function contarVocales(cadena) {
+            return cadena.match(/[aeiouáéíóúAEIOUÁÉÍÓÚ]/g)?.length || 0;
+        }
 
-We'll work in a branch, `my-pages`, that I created for you to get this site looking great. :sparkle:
+        function generarImpares(limite) {
+            let impares = [];
+            for (let i = 1; i <= limite; i++) {
+                if (i % 2 !== 0) impares.push(i);
+            }
+            return impares.join(", ");
+        }
 
-Jekyll uses a file titled `_config.yml` to store settings for your site, your theme, and reusable content like your site title and GitHub handle. You can check out the `_config.yml` file on the **Code** tab of your repository.
-
-We need to use a blog-ready theme. For this activity, we will use a theme named "minima".
-
-### :keyboard: Activity: Configure your site
-
-1. Browse to the `_config.yml` file in the `my-pages` branch.
-1. In the upper right corner, open the file editor.
-1. Add a `theme:` set to **minima** so it shows in the `_config.yml` file as below:
-   ```yml
-   theme: minima
-   ```
-1. (optional) You can modify the other configuration variables such as `title:`, `author:`, and `description:` to further customize your site.
-1. Commit your changes.
-1. (optional) Create a pull request to view all the changes you'll make throughout this course. Click the **Pull Requests** tab, click **New pull request**, set `base: main` and `compare:my-pages`.
-1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
-
----
-
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
-
-&copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
-
-</footer>
+        // Generar inputs al cargar
+        document.getElementById("algoritmo").addEventListener("change", generarInputs);
+        window.onload = generarInputs;
+    </script>
+</body>
+</html>
